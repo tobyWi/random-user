@@ -1,5 +1,5 @@
+import { styled } from '@mui/system'
 import { UserProps } from 'app/page'
-import styled from 'styled-components'
 
 const Description = ({
   user,

@@ -1,5 +1,5 @@
-import { Button } from '@mui/material'
-import styled from 'styled-components'
+import { Button, styled } from '@mui/material'
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShuffle } from '@fortawesome/free-solid-svg-icons'
 
@@ -20,8 +20,8 @@ const FetchButton = ({
       onClick={handleFetchUser}
       className={className}
     >
+      <StyledFontAwesomeIcon icon={faShuffle} />
       Get random user
-      <FontAwesomeIcon icon={faShuffle} style={{ marginLeft: '10px' }} />
     </Button>
   )
 }
@@ -39,4 +39,10 @@ export const StyledFetchButton = styled(FetchButton)`
   &:hover {
     border: 3px solid #cefbe4;
   }
+`
+
+const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
+  margin-right: 10px;
+  width: 12px;
+  height: 12px;
 `

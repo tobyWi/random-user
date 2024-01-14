@@ -56,9 +56,8 @@ export default function Home() {
         throw new Error("Api response wasn't ok, please try again later")
 
       const { results } = await response.json()
-
       const [data] = results
-      console.log(data)
+
       setUserData({
         loading: false,
         error: null,

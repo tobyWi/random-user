@@ -1,7 +1,7 @@
+import { styled } from '@mui/material'
 import { UserProps } from 'app/page'
 
 import NextImage from 'next/image'
-import styled from 'styled-components'
 
 const Image = ({
   loading,

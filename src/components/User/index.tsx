@@ -1,11 +1,11 @@
 import { UserProps } from 'app/page'
-import { Grid } from '@mui/material'
+import { Grid, Paper, styled } from '@mui/material'
 
 import { StyledImage } from './Image'
 import { StyledDescription } from './Description'
 import StyledSummary from './Summary'
-import { StyledLayout } from '../Layout'
 
+Paper
 const User = ({
   loading,
   user,
@@ -16,7 +16,7 @@ const User = ({
   error: string | null
 }) => {
   return (
-    <StyledLayout>
+    <StyledLayout elevation={4}>
       <Grid container flexDirection="row">
         <Grid item xs={5} flexDirection="column">
           <StyledImage loading={loading} user={user} />
@@ -26,8 +26,8 @@ const User = ({
             <StyledSummary user={user} />
           ) : (
             <>
-              <h2>No user</h2>
-              <div>Please click on Get random user below</div>
+              <h2>No user data</h2>
+              <div>Please click on button below</div>
             </>
           )}
         </Grid>
@@ -40,3 +40,13 @@ const User = ({
 }
 
 export default User
+
+export const StyledLayout = styled(Paper)`
+  position: relative;
+  width: 500px;
+  max-width: 100%;
+  min-height: 300px;
+  padding: 20px;
+  background-color: #cce6f4;
+  color: #4ba3c3;
+`

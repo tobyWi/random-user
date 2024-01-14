@@ -36,6 +36,7 @@ const Image = ({
       width={200}
       height={200}
       className={className}
+      priority={true}
     />
   )
 }

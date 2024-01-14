@@ -1,95 +1,118 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+'use client'
+
+import { Grid } from '@mui/material'
+
+import { useState } from 'react'
+
+import User from 'components/User'
+import { StyledFetchButton } from 'components/Button'
+import { ErrorModal } from 'components/ErrorModal'
+
+export type UserProps = {
+  firstName: string
+  lastName: string
+  title: string
+  userName: string
+  email: string
+  phone: string
+  gender: string
+  picture: { large: string }
+  age: number
+  city: string
+  country: string
+  yearsRegistered: number
+}
+interface UserData {
+  loading: boolean
+  error: string | null
+  user: UserProps | null
+}
 
 export default function Home() {
+  const [openModal, setOpenModal] = useState(false)
+  const [userData, setUserData] = useState<UserData>({
+    loading: false,
+    error: null,
+    user: null,
+  })
+
+  const { loading, error, user } = userData
+
+  const fetchUserHandler = () => {
+    setUserData({ ...userData, loading: true })
+    setTimeout(() => {
+      fetchRandomUser()
+    }, 2000)
+  }
+
+  const closeHandler = () => {
+    setOpenModal(false)
+  }
+
+  const fetchRandomUser = async () => {
+    try {
+      setUserData({ ...userData, loading: true, error: null })
+
+      const response = await fetch('https://randomuser.me/api/')
+
+      if (!response.ok)
+        throw new Error("Api couldn't fetch user data, please try again!")
+
+      const { results } = await response.json()
+
+      const [data] = results
+      const {
+        name,
+        email,
+        phone,
+        gender,
+        picture,
+        login,
+        dob,
+        location,
+        registered,
+      } = data
+
+      setUserData({
+        loading: false,
+        error: null,
+        user: {
+          firstName: name.first,
+          lastName: name.last,
+          title: name.title,
+          userName: login.username,
+          age: dob.age,
+          city: location.city,
+          country: location.country,
+          yearsRegistered: registered.age,
+          email,
+          phone,
+          gender,
+          picture,
+        },
+      })
+    } catch (err) {
+      console.error('Error occured when trying to fetching user data: ', err)
+      setUserData({
+        ...userData,
+        loading: false,
+        error: 'Error occured when trying to fetching user data',
+      })
+      setOpenModal(true)
+    }
+  }
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
+    <>
+      <Grid container p={8} alignItems="center" flexDirection="column">
+        <h1>USER RANDOMIZER</h1>
+        <User loading={loading} user={user} error={error} />
+        <StyledFetchButton
+          loading={loading}
+          handleFetchUser={fetchUserHandler}
         />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+      </Grid>
+      <ErrorModal openModal={openModal} handleClose={closeHandler} />
+    </>
   )
 }

@@ -10,16 +10,18 @@ import {
 export const ErrorModal = ({
   handleClose,
   openModal,
+  message,
 }: {
   handleClose: () => void
   openModal: boolean
+  message: string | null
 }) => {
   return (
     <Dialog open={openModal} onClose={handleClose}>
       <DialogTitle id="alert-dialog-title">Oops!</DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
-          An error occured when trying to fetch user data, please try again!
+          {message}
         </DialogContentText>
       </DialogContent>
       <DialogActions>

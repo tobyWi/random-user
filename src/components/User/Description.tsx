@@ -8,15 +8,16 @@ const Description = ({
   user: UserProps | null
   className?: string
 }) => {
-  console.log({ className })
   if (!user) return null
+
+  const { name, dob, gender, location, registered } = user
 
   return (
     <div className={className}>
-      <p>{`${user?.firstName} is a ${user?.age} year old ${
-        user?.gender === 'male' ? 'male' : 'female'
-      } that lives in ${user?.city}, ${user?.country}.`}</p>
-      <p>{`${user?.firstName} has been a registreted user for ${user?.yearsRegistered} years`}</p>
+      <p>{`${name.first} is a ${dob.age} year old ${
+        gender === 'male' ? 'male' : 'female'
+      } that lives in ${location.city}, ${location.country}.`}</p>
+      <p>{`${name.first} has been a registreted user for ${registered.age} years`}</p>
     </div>
   )
 }

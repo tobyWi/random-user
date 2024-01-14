@@ -16,24 +16,26 @@ const Summary = ({
 }) => {
   if (!user) return null
 
+  const { name, login, email, phone } = user
+
   return (
     <div className={className}>
       <div>
-        {`${user?.title}.`} <strong>{user?.lastName}</strong>
+        {`${name.title}.`} <strong>{user?.name.last}</strong>
       </div>
-      <h2>{user?.firstName}</h2>
+      <h2>{name.first}</h2>
       <ul>
         <li>
           <StyledFontAwesomeIcon icon={faAt} />
-          {user?.userName}
+          {login.username}
         </li>
         <li>
           <StyledFontAwesomeIcon icon={faEnvelopeOpen} />
-          {user?.email}
+          {email}
         </li>
         <li>
           <StyledFontAwesomeIcon icon={faMobileAlt} />
-          {user?.phone}
+          {phone}
         </li>
       </ul>
     </div>

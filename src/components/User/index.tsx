@@ -38,9 +38,7 @@ const User = ({
   )
 }
 
-export default User
-
-export const StyledLayout = styled(Paper)`
+const StyledLayout = styled(Paper)`
   text-align: center;
   @media ${device.sm} {
     text-align: left;
@@ -53,3 +51,5 @@ export const StyledLayout = styled(Paper)`
   background-color: #cce6f4;
   color: #4ba3c3;
 `
+
+export default User

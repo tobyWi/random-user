@@ -20,9 +20,7 @@ export const ErrorModal = ({
     <Dialog open={openModal} onClose={handleClose}>
       <DialogTitle>Oops!</DialogTitle>
       <DialogContent>
-        <DialogContentText id="alert-dialog-description">
-          {message}
-        </DialogContentText>
+        <DialogContentText>{message}</DialogContentText>
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose}>Ok</Button>

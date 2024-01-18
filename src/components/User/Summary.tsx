@@ -79,5 +79,3 @@ export const StyledSummary = styled(Summary)`
     }
   }
 `
-
-export default StyledSummary

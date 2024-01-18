@@ -2,6 +2,7 @@ import { styled } from '@mui/material'
 import { UserProps } from 'app/page'
 
 import NextImage from 'next/image'
+import { device } from 'styles/breakpoints'
 
 const Image = ({
   loading,
@@ -42,13 +43,15 @@ const Image = ({
 }
 
 export const StyledImage = styled(Image)`
-  width: 188px;
-  height: 188px;
   border-radius: 100%;
   margin: 0 auto;
-  position: absolute;
-  top: -30px;
-  left: -30px;
+  width: 188px;
+  height: 188px;
   border: 4px solid #cce6f4;
   object-fit: cover;
+  @media ${device.sm} {
+    position: absolute;
+    top: -30px;
+    left: -30px;
+  }
 `

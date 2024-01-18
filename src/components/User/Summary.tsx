@@ -6,6 +6,7 @@ import {
   faMobileAlt,
 } from '@fortawesome/free-solid-svg-icons'
 import { styled } from '@mui/material'
+import { device } from 'styles/breakpoints'
 
 const Summary = ({
   user,
@@ -49,16 +50,28 @@ const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
   height: 12px;
 `
 
-const StyledSummary = styled(Summary)`
+export const StyledSummary = styled(Summary)`
+  margin: 26px 0;
   position: relative;
   &::before {
     content: '';
-    height: 100%;
-    width: 3px;
+    height: 1px;
+    width: 100%;
+    left: 0;
+    right: 0;
+    bottom: -10px;
     background-color: #687987;
     position: absolute;
-    left: -24px;
   }
+  @media ${device.sm} {
+    margin: 0;
+    &::before {
+      height: 100%;
+      width: 3px;
+      left: -24px;
+    }
+  }
+
   ul {
     color: #96a0a8;
     li {

@@ -3,13 +3,12 @@ import { Grid, Paper, styled } from '@mui/material'
 
 import { StyledImage } from './Image'
 import { StyledDescription } from './Description'
-import StyledSummary from './Summary'
+import { StyledSummary } from './Summary'
+import { device } from 'styles/breakpoints'
 
-Paper
 const User = ({
   loading,
   user,
-  error,
 }: {
   loading: boolean
   user: UserProps | null
@@ -18,10 +17,10 @@ const User = ({
   return (
     <StyledLayout elevation={4}>
       <Grid container flexDirection="row">
-        <Grid item xs={5} flexDirection="column">
+        <Grid item xs={12} sm={5} flexDirection="column">
           <StyledImage loading={loading} user={user} />
         </Grid>
-        <Grid item xs={7} flexDirection="column">
+        <Grid item xs={12} sm={7} flexDirection="column">
           {user ? (
             <StyledSummary user={user} />
           ) : (
@@ -42,6 +41,10 @@ const User = ({
 export default User
 
 export const StyledLayout = styled(Paper)`
+  text-align: center;
+  @media ${device.sm} {
+    text-align: left;
+  }
   position: relative;
   width: 500px;
   max-width: 100%;

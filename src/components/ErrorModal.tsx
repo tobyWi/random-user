@@ -18,7 +18,7 @@ export const ErrorModal = ({
 }) => {
   return (
     <Dialog open={openModal} onClose={handleClose}>
-      <DialogTitle id="alert-dialog-title">Oops!</DialogTitle>
+      <DialogTitle>Oops!</DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
           {message}

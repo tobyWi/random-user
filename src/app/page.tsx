@@ -78,7 +78,7 @@ export default function Home() {
 
   return (
     <>
-      <Grid container p={8} alignItems="center" flexDirection="column">
+      <Grid container px={1} alignItems="center" flexDirection="column">
         <h1>USER RANDOMIZER</h1>
         <User loading={loading} user={user} error={error} />
         <StyledFetchButton

@@ -26,6 +26,12 @@ const FetchButton = ({
   )
 }
 
+const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
+  margin-right: 10px;
+  width: 12px;
+  height: 12px;
+`
+
 export const StyledFetchButton = styled(FetchButton)`
   align-self: center;
   color: #cce6f4;
@@ -39,10 +45,4 @@ export const StyledFetchButton = styled(FetchButton)`
   &:hover {
     border: 3px solid #cefbe4;
   }
-`
-
-const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
-  margin-right: 10px;
-  width: 12px;
-  height: 12px;
 `

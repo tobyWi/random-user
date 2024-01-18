@@ -6,7 +6,7 @@ import { useState } from 'react'
 
 import User from 'components/User'
 import { StyledFetchButton } from 'components/Button'
-import { ErrorModal } from 'components/ErrorModal'
+import ErrorModal from 'components/ErrorModal'
 
 export type UserProps = {
   dob: { age: number }
@@ -25,7 +25,7 @@ interface UserData {
   user: UserProps | null
 }
 
-export default function Home() {
+const Home = () => {
   const [openModal, setOpenModal] = useState(false)
   const [userData, setUserData] = useState<UserData>({
     loading: false,
@@ -94,3 +94,5 @@ export default function Home() {
     </>
   )
 }
+
+export default Home

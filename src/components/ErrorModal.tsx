@@ -7,7 +7,7 @@ import {
   DialogTitle,
 } from '@mui/material'
 
-export const ErrorModal = ({
+const ErrorModal = ({
   handleClose,
   openModal,
   message,
@@ -28,3 +28,5 @@ export const ErrorModal = ({
     </Dialog>
   )
 }
+
+export default ErrorModal

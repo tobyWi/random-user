@@ -53,7 +53,7 @@ const Home = () => {
       const response = await fetch('https://randomuser.me/api/')
 
       if (!response.ok)
-        throw new Error("Api response wasn't ok, please try again later")
+        throw new Error('Failed to fetch user. Please try again later.')
 
       const { results } = await response.json()
       const [data] = results
@@ -70,7 +70,7 @@ const Home = () => {
       setUserData({
         ...userData,
         loading: false,
-        error: 'Error occured when trying to fetching user data',
+        error: 'Error occurred while fetching user data. Please try again.',
       })
       setOpenModal(true)
     }
